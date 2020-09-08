@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RssAttribution" representedClassName="RssAttribution" syncable="YES" codeGenerationType="class">
+        <attribute name="declaration" optional="YES" attributeType="String"/>
+        <attribute name="html" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="isOpen" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <attribute name="pubDate" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="resources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RssResources" inverseName="attribution" inverseEntity="RssResources"/>
+    </entity>
+    <entity name="RssResources" representedClassName="RssResources" syncable="YES" codeGenerationType="class">
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <relationship name="attribution" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RssAttribution" inverseName="resources" inverseEntity="RssAttribution"/>
+    </entity>
+    <elements>
+        <element name="RssAttribution" positionX="-63" positionY="0" width="128" height="163"/>
+        <element name="RssResources" positionX="-296.98046875" positionY="30.37109375" width="128" height="88"/>
+    </elements>
+</model>

@@ -1,0 +1,26 @@
+PODS:
+  - ReachabilitySwift (5.0.0)
+  - SDWebImage (5.9.0):
+    - SDWebImage/Core (= 5.9.0)
+  - SDWebImage/Core (5.9.0)
+  - SwiftyXMLParser (5.0.0)
+
+DEPENDENCIES:
+  - ReachabilitySwift
+  - SDWebImage
+  - SwiftyXMLParser
+
+SPEC REPOS:
+  trunk:
+    - ReachabilitySwift
+    - SDWebImage
+    - SwiftyXMLParser
+
+SPEC CHECKSUMS:
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+
+PODFILE CHECKSUM: f903d561f7da63c6b1d0607c437ff239062c7dd2
+
+COCOAPODS: 1.8.4
