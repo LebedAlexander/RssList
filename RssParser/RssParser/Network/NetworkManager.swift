@@ -10,7 +10,7 @@ final class NetworkManager: NSObject {
     //MARK: - Properties
     private let dispatchGroup = DispatchGroup()
     private let cacheImage = SDImageCache()
-    public let requestQueue = DispatchQueue(label: "com.rssparser.queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .never, target: nil)
+    private let requestQueue = DispatchQueue(label: "com.rssparser.queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .never, target: nil)
     
     //MARK: - Start reqeuests
     public func startRequest(completion: @escaping () -> ()) {
@@ -20,7 +20,7 @@ final class NetworkManager: NSObject {
     }
     
     //MARK: - Requests
-    public func requestToRss(url: String?, completion: ((Bool) -> ())?) {
+    public func requestToRss(url: String?, completion: ((_ queue: DispatchQueue,_ result: Bool) -> ())?) {
         
         if let urlString = url, let url = URL(string: urlString) {
             
@@ -33,7 +33,7 @@ final class NetworkManager: NSObject {
                     if let error = error {
                         
                         self.dispatchGroup.leave()
-                        completion?(false)
+                        completion?(self.requestQueue, false)
                         
                         print(error.localizedDescription)
                     } else if let data = data {
@@ -41,11 +41,11 @@ final class NetworkManager: NSObject {
                         let xmlParser = XML.parse(data)
                         if let error = xmlParser.error {
                             
-                            completion?(false)
+                            completion?(self.requestQueue, false)
                             print(error.localizedDescription)
                         } else {
                             
-                            completion?(true)
+                            completion?(self.requestQueue, true)
                             self.mapping(xmlAccessor: xmlParser["rss", "channel", "item"], currentResources: urlString)
                         }
                     }
@@ -55,7 +55,7 @@ final class NetworkManager: NSObject {
             }
         } else {
             
-            completion?(false)
+            completion?(requestQueue, false)
         }
     }
     

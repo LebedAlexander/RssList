@@ -18,9 +18,9 @@ final class AddRssController: UIViewController {
     @IBAction func addRssAction(_ sender: UIButton) {
     
         checkTextField { (text) in
-            NetworkManager.shared.requestToRss(url: text) { (result) in
+            NetworkManager.shared.requestToRss(url: text) { (queue, result) in
                 if result {
-                    NetworkManager.shared.requestQueue.sync {
+                    queue.sync {
                         CoreDataManager.shared.addRssResources(link: text)
                     }
                     
